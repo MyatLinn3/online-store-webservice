@@ -10,7 +10,8 @@ public interface ProductService {
     List<Product> findAll();
     Optional<Product> findById(int id);
     Product save(Product product);
-    List<Product> blurrySearch(String keywory);
+    List<Product> blurrySearch(String keyword);
+
     void removeOne(int id);
 
 

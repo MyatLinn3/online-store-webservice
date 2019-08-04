@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> blurrySearch(String keywory) {
-        return null;
+    public List<Product> blurrySearch(String keyword) {
+        return productRepository.findByProductNameContains(keyword);
     }
 
     @Override

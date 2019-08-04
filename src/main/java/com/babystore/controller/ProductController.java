@@ -15,6 +15,7 @@ import java.util.Optional;
 @RequestMapping("/api/product")
 @CrossOrigin("*")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
@@ -25,6 +26,10 @@ public class ProductController {
         return productService.save(product);
     }
 
+    @GetMapping(value="/{productName}")
+    public List<Product> searchByName(@PathVariable String productName) {
+        return  productService.blurrySearch(productName);
+    }
     @RequestMapping("/productList")
     public List<Product> getBookList() {
         return productService.findAll();
