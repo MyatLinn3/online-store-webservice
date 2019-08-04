@@ -49,9 +49,10 @@ public class ProductController {
         return new ResponseEntity("Remove Success!", HttpStatus.OK);
     }
 
-    @RequestMapping("/{id}")
-    public Optional<Product> getBook(@PathVariable("id") int id){
+    @PostMapping(value = "/view")
+    public Optional<Product> getBook(@RequestBody int id){
         Optional<Product> book = productService.findById(id);
+        System.out.println(book.get());
         return book;
     }
 }
