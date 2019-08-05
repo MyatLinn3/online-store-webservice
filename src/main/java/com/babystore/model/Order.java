@@ -4,17 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import com.babystore.model.Product;
+
 
 @Entity
 @Table(name = "order_table")
 public class Order implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "order")
-    private List<Product> productList=new ArrayList<>();
+    @ManyToMany
+    private List<Product> products=new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_id")
@@ -29,12 +33,12 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public ShippingAddress getShippingAddress() {

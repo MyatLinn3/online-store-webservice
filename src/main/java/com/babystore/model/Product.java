@@ -20,9 +20,9 @@ public class Product  implements Serializable {
     private String imageUrl;
     private boolean isAvailable=true;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "order_id")
+    // private Order order;
 
     public Integer getId() {
         return id;
@@ -88,13 +88,13 @@ public class Product  implements Serializable {
         this.targetSize = targetSize;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+    // public Order getOrder() {
+    //     return order;
+    // }
+    //
+    // public void setOrder(Order order) {
+    //     this.order = order;
+    // }
 
     public String getImageUrl() {
         return imageUrl;

@@ -21,8 +21,8 @@ public class ShippingAddress implements Serializable {
     public String email;
     public String confirmEmail;
 
-    @OneToOne(mappedBy = "shippingAddress")
-    private Order order;
+    // @OneToOne(mappedBy = "shippingAddress")
+    // private Order order;
 
     public Integer getId() {
         return id;
@@ -112,11 +112,11 @@ public class ShippingAddress implements Serializable {
         this.confirmEmail = confirmEmail;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+    // public Order getOrder() {
+    //     return order;
+    // }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+    // public void setOrder(Order order) {
+    //     this.order = order;
+    // }
 }

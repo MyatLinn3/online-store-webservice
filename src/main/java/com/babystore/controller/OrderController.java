@@ -18,16 +18,31 @@ import java.util.stream.Collectors;
 @CrossOrigin("*")
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private ShippingAddressService shippingAddressService;
+  @Autowired
+  private OrderService orderService;
+  @Autowired
+  private ProductService productService;
+  @Autowired
+  private ShippingAddressService shippingAddressService;
 
-    @PostMapping("/create")
-    public ResponseEntity<String>  createOrder(@RequestBody Order order){
-         orderService.save(order);
-         return new ResponseEntity<>("Successfully", HttpStatus.OK);
-    }
+  @PostMapping("/create")
+  public void createOrder(@RequestBody Order order) {
+    System.out.println(order.getProducts());
+    productService.findAll().forEach(a -> {
+      order.getProducts().forEach(b -> {
+        if (a.getId() == b.getId()) {
+          a.setQuantity(a.getQuantity() - 1);
+        }
+        if (a.getQuantity() == 0) {
+          a.setAvailable(false);
+        }
+      });
+    });
+    orderService.save(order);
+  }
+
+  @GetMapping("/orders")
+  public List<Order> getAllOrders() {
+    return orderService.findAll();
+  }
 }
