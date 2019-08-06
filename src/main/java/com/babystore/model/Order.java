@@ -23,7 +23,15 @@ public class Order implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_id")
     private ShippingAddress shippingAddress;
+    private String date;
 
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public String getDate(){
+        return date;
+    }
 
     public Integer getOrderId() {
         return orderId;
