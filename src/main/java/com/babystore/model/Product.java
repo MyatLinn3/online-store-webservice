@@ -19,7 +19,15 @@ public class Product  implements Serializable {
     private String targetSize;
     private String imageUrl;
     private boolean isAvailable=true;
+    private String date;
 
+    public String getDate(){
+        return date;
+    } 
+    public void setDate(String date){
+        this.date = date;
+        
+    }
     // @ManyToOne(fetch = FetchType.EAGER)
     // @JoinColumn(name = "order_id")
     // private Order order;

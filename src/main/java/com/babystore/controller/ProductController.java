@@ -25,9 +25,10 @@ public class ProductController {
     }
 
     @GetMapping(value="/{productName}")
-    public List<Product> searchByName(@PathVariable String productName) {
+    public List<Product> searchByName(@PathVariable() String productName) {
         return  productService.blurrySearch(productName);
     }
+   
     @RequestMapping("/productList")
     public List<Product> getBookList() {
         return productService.findAll();
@@ -52,5 +53,10 @@ public class ProductController {
         Optional<Product> book = productService.findById(id);
         System.out.println(book.get());
         return book;
+    }
+
+    @GetMapping("get/{id}")
+    public Product getProductById(@PathVariable("id") int id){
+        return productService.findById(id).orElse(new Product());
     }
 }
