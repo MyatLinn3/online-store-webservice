@@ -19,44 +19,44 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(value="/add")
+    @PostMapping(value = "/add")
     public Product addBookPost(@RequestBody Product product) {
         return productService.save(product);
     }
 
-    @GetMapping(value="/{productName}")
+    @GetMapping(value = "/{productName}")
     public List<Product> searchByName(@PathVariable() String productName) {
-        return  productService.blurrySearch(productName);
+        return productService.blurrySearch(productName);
     }
-   
+
     @RequestMapping("/productList")
     public List<Product> getBookList() {
         return productService.findAll();
     }
 
-    @RequestMapping(value="/update", method= RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Product updateBookPost(@RequestBody Product book) {
+        if (book.getQuantity() > 0) {
+            book.setAvailable(true);
+        }
         return productService.save(book);
     }
 
-
-    @RequestMapping(value="/remove", method=RequestMethod.POST)
-    public ResponseEntity remove(
-            @RequestBody String id
-    ) throws IOException {
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    public ResponseEntity remove(@RequestBody String id) throws IOException {
         productService.removeOne(Integer.parseInt(id));
         return new ResponseEntity("Remove Success!", HttpStatus.OK);
     }
 
     @PostMapping(value = "/view")
-    public Optional<Product> getBook(@RequestBody int id){
+    public Optional<Product> getBook(@RequestBody int id) {
         Optional<Product> book = productService.findById(id);
         System.out.println(book.get());
         return book;
     }
 
     @GetMapping("get/{id}")
-    public Product getProductById(@PathVariable("id") int id){
+    public Product getProductById(@PathVariable("id") int id) {
         return productService.findById(id).orElse(new Product());
     }
 }
