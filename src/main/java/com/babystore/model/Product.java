@@ -4,22 +4,32 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Product  implements Serializable {
+public class Product implements Serializable {
 
-    private static final long serialVersionUID=425345L;
+    private static final long serialVersionUID = 425345L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String productName;
     private double price;
-    private int quantity;
+    private long totalQuantity;
+    private long availableQuantity;
     private String description;
     private String category;
     private String targetSize;
     private String imageUrl;
-    private boolean isAvailable=true;
+    private boolean isAvailable = true;
+    private String date;
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+
+    }
     // @ManyToOne(fetch = FetchType.EAGER)
     // @JoinColumn(name = "order_id")
     // private Order order;
@@ -48,12 +58,20 @@ public class Product  implements Serializable {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public long gettotalQuantity() {
+        return totalQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void settotalQuantity(long totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public long getavailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setavailableQuantity(long availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     public boolean isAvailable() {
@@ -89,11 +107,11 @@ public class Product  implements Serializable {
     }
 
     // public Order getOrder() {
-    //     return order;
+    // return order;
     // }
     //
     // public void setOrder(Order order) {
-    //     this.order = order;
+    // this.order = order;
     // }
 
     public String getImageUrl() {

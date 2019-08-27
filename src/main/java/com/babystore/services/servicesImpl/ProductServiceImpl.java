@@ -2,6 +2,7 @@ package com.babystore.services.servicesImpl;
 
 import com.babystore.model.Product;
 import com.babystore.repository.ProductRepository;
+import com.babystore.services.OrderService;
 import com.babystore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private  OrderService orderService;
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -37,7 +40,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void removeOne(int id) {
-
+        orderService.findAll().forEach(order -> {
+            order.getProducts().removeIf(product -> product.getId() == id);
+        });
         productRepository.deleteById(id);
 
     }
