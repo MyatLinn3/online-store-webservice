@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class ProductController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Product updateBookPost(@RequestBody Product book) {
-        if (book.getQuantity() > 0) {
+        if (book.gettotalQuantity() > 0) {
             book.setAvailable(true);
         }
         return productService.save(book);
