@@ -13,7 +13,6 @@ public class Product implements Serializable {
     private Integer id;
     private String productName;
     private double price;
-    private long totalQuantity;
     private long availableQuantity;
     private String description;
     private String category;
@@ -58,14 +57,6 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public long gettotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void settotalQuantity(long totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
-
     public long getavailableQuantity() {
         return availableQuantity;
     }
@@ -106,13 +97,6 @@ public class Product implements Serializable {
         this.targetSize = targetSize;
     }
 
-    // public Order getOrder() {
-    // return order;
-    // }
-    //
-    // public void setOrder(Order order) {
-    // this.order = order;
-    // }
 
     public String getImageUrl() {
         return imageUrl;

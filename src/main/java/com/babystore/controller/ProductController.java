@@ -35,7 +35,7 @@ public class ProductController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Product updateBookPost(@RequestBody Product book) {
-        if (book.gettotalQuantity() > 0) {
+        if (book.getavailableQuantity() > 0) {
             book.setAvailable(true);
         }
         return productService.save(book);
